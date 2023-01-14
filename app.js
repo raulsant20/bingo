@@ -1,4 +1,6 @@
 const startButton = document.getElementById("start")
+const tossButton = document.getElementById("again")
+console.log(tossButton)
 
 const createNumber = (element) => {
   const divNumbers = document.getElementById("results")
@@ -9,15 +11,26 @@ const createNumber = (element) => {
   divNumbers.appendChild(newDiv)
 }
 
+const deleting = () => {
+  const divResults = document.getElementById("results")
+  const div = document.getElementsByClassName("number")
+
+  if(div.length){
+    while(div.length){
+      divResults.removeChild(div[0])
+    }
+  }
+}
+
 function start () {
   const max = document.getElementById("max").value
-  console.log(max)
+  deleting()
   if(max > 0){
     let allNumbers = Array.from({length: max}, (_, i)=>++i);
     allNumbers.map( element => createNumber(element))
     const button = document.getElementById("again")
     button.style.display = ""
-    console.log(button)
+    // console.log(button)
     
   }
   else {
@@ -25,4 +38,11 @@ function start () {
   }
 }
 
+// const toss = () => {
+//   const divContainer = document.getElementById("toss")
+//   let numbersTossed = []
+//   let number = Math.floor(Math.random()*)
+// }
+
 startButton.addEventListener("click", start)
+// tossButton.addEventListener("click", toss)
