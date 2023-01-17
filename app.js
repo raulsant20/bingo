@@ -42,6 +42,8 @@ function start () {
 
 const toss = () => {
   const max = document.getElementById("max").value
+  const numbers = document.getElementsByClassName("number")
+  console.log(numbers[0])
   let number
   let show = true
   if(numbersTossed.length < parseInt(max)){
@@ -51,6 +53,7 @@ const toss = () => {
     } while(numbersTossed.includes(number))
   numbersTossed.push(number)
   console.log(number, numbersTossed)
+  numbers[number-1].setAttribute("class", `number ${number} check`)
   }
   else {
     show = false
