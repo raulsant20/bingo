@@ -1,5 +1,6 @@
 const startButton = document.getElementById("start")
 const tossButton = document.getElementById("again")
+let numbersTossed = []
 console.log(tossButton)
 
 const createNumber = (element) => {
@@ -30,6 +31,7 @@ function start () {
     allNumbers.map( element => createNumber(element))
     const button = document.getElementById("again")
     button.style.display = ""
+    numbersTossed = []
     // console.log(button)
     
   }
@@ -38,11 +40,23 @@ function start () {
   }
 }
 
-// const toss = () => {
-//   const divContainer = document.getElementById("toss")
-//   let numbersTossed = []
-//   let number = Math.floor(Math.random()*)
-// }
+const toss = () => {
+  const divContainer = document.getElementById("toss")
+  const max = document.getElementById("max").value
+  let number
+  if(numbersTossed.length < parseInt(max)){
+    do{
+      number = Math.floor(Math.random()*max)+1
+      console.log("dentro del do while")
+    } while(numbersTossed.includes(number))
+  numbersTossed.push(number)
+  console.log(number, numbersTossed)
+  }
+  else {
+    alert("Ya salieron todos los numeros")
+  }
+  
+}
 
 startButton.addEventListener("click", start)
-// tossButton.addEventListener("click", toss)
+tossButton.addEventListener("click", toss)
