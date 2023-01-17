@@ -41,9 +41,9 @@ function start () {
 }
 
 const toss = () => {
-  const divContainer = document.getElementById("toss")
   const max = document.getElementById("max").value
   let number
+  let show = true
   if(numbersTossed.length < parseInt(max)){
     do{
       number = Math.floor(Math.random()*max)+1
@@ -53,7 +53,16 @@ const toss = () => {
   console.log(number, numbersTossed)
   }
   else {
+    show = false
     alert("Ya salieron todos los numeros")
+  }
+
+  const divContainer = document.getElementById("toss")
+  if(show){
+    divContainer.innerHTML = number
+  }
+  else {
+    divContainer.innerHTML = ""
   }
   
 }
