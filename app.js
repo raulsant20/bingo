@@ -6,7 +6,7 @@ console.log(tossButton)
 const createNumber = (element) => {
   const divNumbers = document.getElementById("results")
   const newDiv = document.createElement("div")
-  let className = `number ${element}`
+  let className = `number ${element} isSelected`
   newDiv.setAttribute("class", className)
   newDiv.innerHTML = element
   divNumbers.appendChild(newDiv)
@@ -43,31 +43,49 @@ function start () {
 const toss = () => {
   const max = document.getElementById("max").value
   const numbers = document.getElementsByClassName("number")
+  const numbersAnimation = document.getElementsByClassName("isSelected")
+  console.log(numbersAnimation)
+  for (const number of numbersAnimation) {
+    number.classList.add("animation")
+  };
   console.log(numbers[0])
   let number
   let show = true
-  if(numbersTossed.length < parseInt(max)){
-    do{
-      number = Math.floor(Math.random()*max)+1
-      console.log("dentro del do while")
-    } while(numbersTossed.includes(number))
-  numbersTossed.push(number)
-  console.log(number, numbersTossed)
-  numbers[number-1].setAttribute("class", `number ${number} check`)
-  }
-  else {
-    show = false
-    alert("Ya salieron todos los numeros")
-  }
-
-  const divContainer = document.getElementById("toss")
-  if(show){
-    divContainer.innerHTML = number
-  }
-  else {
+  if(numbersTossed.length >= parseInt(max)){
+    const divContainer = document.getElementById("toss")
     divContainer.innerHTML = ""
+    alert("Ya salieron todos los numeros")
+    return
   }
-  
+  setTimeout(()=>{
+    if(numbersTossed.length < parseInt(max)){
+      do{
+        number = Math.floor(Math.random()*max)+1
+        console.log("dentro del do while")
+      } while(numbersTossed.includes(number))
+      numbersTossed.push(number)
+      console.log(number, numbersTossed)
+      numbers[number-1]?.classList?.remove("isSelected")
+      numbers[number-1]?.setAttribute("class", `number ${number} check`)
+      const numbersAnimation = document.getElementsByClassName("isSelected")
+      for (const number of numbersAnimation) {
+        number.classList.remove("animation")
+      };
+    
+    }
+    else {
+      show = false
+      alert("Ya salieron todos los numeros")
+    }
+
+    const divContainer = document.getElementById("toss")
+    if(show){
+      divContainer.innerHTML = number
+    }
+    else {
+      divContainer.innerHTML = ""
+    }
+  }, 3000)
 }
 
 startButton.addEventListener("click", start)

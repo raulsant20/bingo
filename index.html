@@ -8,15 +8,19 @@
   <title>Bingo</title>
 </head>
 <body>
-  <h1>BINGO</h1>
+  <h1 style="text-align: center;">BINGO</h1>
   <label for="max">
     Maximum number
     <input id="max" type="number" required>
   </label>
-  <button id="start">Empezar</button>
+  <div>
+    <button id="start" style="margin: auto; margin-top: 16px;">Empezar</button>
+  </div>
   <div id="results"></div>
-  <button id="again" style="display: none;" >Toss</button>
-  <div id="toss"></div>
+  <div>
+    <button id="again" style="display: none; margin: auto; display: block;" >Toss</button>
+  </div>
+  <div id="toss" style="margin: 16px auto;"></div>
   <script src="app.js"></script>
 </body>
 </html>
